@@ -18,6 +18,6 @@ app.use('/', root)
 app.use('/login', login)
 app.use('/register', register)
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log('listening on http://localhost:3000')
 })
