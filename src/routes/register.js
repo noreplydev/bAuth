@@ -5,28 +5,27 @@ import { hashPass } from '../utils/crypt.js'
 const router = Router()
 
 router.post('/', async (req, res) => {
-  console.log('hola', req.body)
-  const { user, password, username } = req.body
+  const { name, password, username } = req.body
 
-  if (!user || !password || !username) {
+  if (!name || !password || !username) {
     res.status(400)
-    res.json({ error: 'Username or password missing' })
+    res.json({ error: 'Missing field to create a user' })
     return // eslint-disable-line
   }
 
   // null user does not exists
-  const exists = await userExists(username)
+  const existsQuery = await userExists(username)
 
-  if (exists) {
+  if (existsQuery) {
     res.status(400)
     res.json({ error: 'Username already exists' })
     return // eslint-disable-line
   }
 
   const hashedPassword = await hashPass(password)
-  console.log('hashedPassword', hashedPassword)
+
   const userCreation = createUser({
-    name: user,
+    name,
     password: hashedPassword,
     username
   })

@@ -7,7 +7,8 @@ router.all('/', loggedIn)
 
 router.get('/', (req, res) => {
   res.status(200)
-  res.send('This is our dashboard, you are logged in')
+  res.contentType('html')
+  res.send(`<p>Hi again ${req.user.name}</p>`)
 })
 
 export default router

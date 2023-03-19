@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import { UserModel } from '../models/user.js'
 
-export const connect = async () => {
+export const connectToMongo = async () => {
   const MONGO_URL = process.env.MONGO_URL
   await mongoose.connect(MONGO_URL)
 
@@ -15,6 +15,5 @@ export const createUser = async (user) => {
 
 export const userExists = async (username) => {
   const query = await UserModel.findOne({ username }).exec()
-  console.log('query', query)
   return query
 }
