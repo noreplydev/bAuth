@@ -14,6 +14,7 @@ export const createUser = async (user) => {
 }
 
 export const userExists = async (username) => {
-  const query = await UserModel.findOne({ user: 'sanchez-crisitan' }).exec()
+  const query = await UserModel.findOne({ username }).exec()
   console.log('query', query)
+  return query
 }

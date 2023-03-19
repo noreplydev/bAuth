@@ -4,7 +4,7 @@ import { hashPass } from '../utils/crypt.js'
 
 const router = Router()
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   console.log('hola', req.body)
   const { user, password, username } = req.body
 
@@ -14,23 +14,25 @@ router.post('/', (req, res) => {
     return // eslint-disable-line
   }
 
-  userExists(username)
+  // null user does not exists
+  const exists = await userExists(username)
 
-  if (false) {
+  if (exists) {
     res.status(400)
     res.json({ error: 'Username already exists' })
     return // eslint-disable-line
   }
 
-  const hashedPassword = hashPass(password)
+  const hashedPassword = await hashPass(password)
+  console.log('hashedPassword', hashedPassword)
   const userCreation = createUser({
     name: user,
     password: hashedPassword,
-    username: user
+    username
   })
 
   userCreation
-    .then((user) => {
+    .then(() => {
       res.status(201)
       res.json({ status: 'User created' })
     })
