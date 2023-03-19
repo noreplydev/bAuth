@@ -10,11 +10,10 @@ export const connect = async () => {
 
 export const createUser = async (user) => {
   const newUser = new UserModel(user)
-  newUser.save()
-    .then(user => {
-      console.log('user created', user)
-    })
-    .catch(err => {
-      console.log('error creating user', err)
-    })
+  return newUser.save()
+}
+
+export const userExists = async (username) => {
+  const query = await UserModel.findOne({ user: 'sanchez-crisitan' }).exec()
+  console.log('query', query)
 }

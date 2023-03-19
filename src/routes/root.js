@@ -1,11 +1,13 @@
 import { Router } from 'express'
 import { loggedIn } from '../middlewares/loggedIn.js'
+
 const router = Router()
 
 router.all('/', loggedIn)
 
-router.post('/', (req, res) => {
-  // do the login stuff, return the token an so on
+router.get('/', (req, res) => {
+  res.status(200)
+  res.send('This is our dashboard, you are logged in')
 })
 
 export default router
