@@ -57,7 +57,7 @@ RESPONSE: 200 OK || 401 Unauthorized || 400 No token provided
 * [Node.js](https://nodejs.org/en/) - JavaScript runtime
 * [Express](https://expressjs.com/) - Web framework for Node.js
 * [MongoDB](https://www.mongodb.com/) - Database
-* [Mongoose](https://mongoosejs.com/) - MongoDB ORM for Node. 
+* [Mongoose](https://mongoosejs.com/) - MongoDB ODM for Node. 
 
 ## Author
 
